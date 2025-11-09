@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !="production")
+require('dotenv').config()
+
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -9,9 +13,13 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+//console.log("Enviroment",process.env);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -20,7 +28,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  console.log("Ben app.js'de çalışan bir middleware'ım");
+  //console.log("Ben app.js'de çalışan bir middleware'ım");
   next();
 });
 
